@@ -17,8 +17,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6 bg-light p-3">
+    <div class="col bg-light p-5">
       <div class="row">
         <div class="col">
           <h2>Generate a Password</h2>
@@ -26,9 +25,9 @@
         </div>
       </div>
       <div class="row">
-        <div class="col mx-5 mt-1 mb-3 border border-dark text-center rounded">
+        <div class="col mx-auto mt-1 mb-3 border border-dark text-center rounded text-wrap">
           <div class="spacer-div-150"></div>
-          <p>
+          <p id ="passText">
             Your Secure Password
           </p>
           <div class="spacer-div-150"></div>
@@ -68,7 +67,6 @@
         </div>
       </div>
     </div>
-    <div class="col-md-3"></div>
   </div>
   </div>
   
@@ -106,6 +104,7 @@
         let password = passGen(length,lower,upper,numeric,special)
         console.log(password)
         console.log('input was valid, PassGen run')
+        document.getElementById("passText").innerHTML = password
       }
     }
 
@@ -116,6 +115,7 @@
       let totalTypes = low + upp + num + spc
       let fraction = Math.floor(length/totalTypes)
       let remainder = length - (totalTypes*fraction)
+      let i
       genWord = ''
       if (low){
         genWord = genWord + generate_random_string_lower(fraction);
@@ -124,7 +124,7 @@
         genWord = genWord + generate_random_string_upper(fraction);
       }
       if (num) {
-        let i = fraction
+        i = fraction
         while (i>0){
           genWord = genWord + Math.floor(Math.random() * 10)
           i = i - 1
@@ -132,6 +132,25 @@
       }
       if (spc) {
         genWord = genWord + generate_random_string_spec(fraction);
+      }
+
+      if (remainder > 0){
+        if (low) {
+          genWord = genWord + generate_random_string_lower(remainder);
+        }
+        else if (upp) {
+          genWord = genWord + generate_random_string_upper(remainder);
+        }
+        else if (num) {
+          i = remainder
+          while (i > 0) {
+            genWord = genWord + Math.floor(Math.random() * 10)
+            i = i - 1
+          }
+        }
+        else if (spc) {
+          genWord = genWord + generate_random_string_spec(fraction);
+        }
       }
       return genWord
     }
