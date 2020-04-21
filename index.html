@@ -10,64 +10,64 @@
 </head>
 <body>
   <div class="container">
-  <div class="row">
-    <div class="col text-center mt-5 mb-5">
-      <h1>Password Generator</h1>
+    <div class="row">
+      <div class="col text-center mt-5 mb-5">
+        <h1>Password Generator</h1>
+      </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col bg-light p-5">
-      <div class="row">
-        <div class="col">
-          <h2>Generate a Password</h2>
-          <hr>
+    <div class="row">
+      <div class="col bg-light p-5">
+        <div class="row">
+          <div class="col">
+            <h2>Generate a Password</h2>
+            <hr>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col mx-auto mt-1 mb-3 border border-dark text-center rounded text-wrap">
-          <div class="spacer-div-150"></div>
-          <p id ="passText">
-            Your Secure Password
-          </p>
-          <div class="spacer-div-150"></div>
+        <div class="row">
+          <div class="col mx-auto mt-1 mb-3 border border-dark text-center rounded">
+            <div class="spacer-div-150"></div>
+            <p id ="passText" class = "text-break">
+              Your Secure Password
+            </p>
+            <div class="spacer-div-150"></div>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col mb-2">
-          <form>
-            <div class="form-group">
-              <label for="passLength">Password length</label>
-              <input type="text" class="form-control" id="passLength"
-                placeholder="Enter desired password length (in characters)">
-              <small id="passLength" class="form-text text-muted">Enter a numeric value between 8 and 128</small>
-            </div>
-            <div class="form-check form-check-inline">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label" for="exampleCheck1">Include lowercase chars</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input type="checkbox" class="form-check-input" id="exampleCheck2">
-              <label class="form-check-label" for="exampleCheck2">Include uppercase chars</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input type="checkbox" class="form-check-input" id="exampleCheck3">
-              <label class="form-check-label" for="exampleCheck3">Include numeric chars</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input type="checkbox" class="form-check-input" id="exampleCheck4">
-              <label class="form-check-label" for="exampleCheck4">Include special chars</label>
-            </div>
-          </form>
+        <div class="row">
+          <div class="col mb-2">
+            <form>
+              <div class="form-group">
+                <label for="passLength">Password length</label>
+                <input type="text" class="form-control" id="passLength"
+                  placeholder="Enter desired password length (in characters)">
+                <small id="passLength" class="form-text text-muted">Enter a numeric value between 8 and 128</small>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Include lowercase chars</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" class="form-check-input" id="exampleCheck2">
+                <label class="form-check-label" for="exampleCheck2">Include uppercase chars</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" class="form-check-input" id="exampleCheck3">
+                <label class="form-check-label" for="exampleCheck3">Include numeric chars</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" class="form-check-input" id="exampleCheck4">
+                <label class="form-check-label" for="exampleCheck4">Include special chars</label>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col text-center">
-          <button type="button" onclick="buttonHandler()" class="btn btn-danger">Generate Password</button>
+        <div class="row">
+          <div class="col text-center">
+            <button type="button" onclick="buttonHandler()" class="btn btn-danger">Generate Password</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   </div>
   
   <script>
