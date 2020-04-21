@@ -35,8 +35,36 @@
         </div>
       </div>
       <div class="row">
+        <div class="col mb-2">
+          <form>
+            <div class="form-group">
+              <label for="passLength">Password length</label>
+              <input type="text" class="form-control" id="passLength"
+                placeholder="Enter desired password length (in characters)">
+              <small id="passLength" class="form-text text-muted">Enter a numeric value between 8 and 128</small>
+            </div>
+            <div class="form-check form-check-inline">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Include lowercase chars</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input type="checkbox" class="form-check-input" id="exampleCheck2">
+              <label class="form-check-label" for="exampleCheck2">Include uppercase chars</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input type="checkbox" class="form-check-input" id="exampleCheck3">
+              <label class="form-check-label" for="exampleCheck3">Include numeric chars</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input type="checkbox" class="form-check-input" id="exampleCheck4">
+              <label class="form-check-label" for="exampleCheck4">Include special chars</label>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row">
         <div class="col text-center">
-          <button type="button" class="btn btn-danger">Generate Password</button>
+          <button type="button" onclick="buttonHandler()" class="btn btn-danger">Generate Password</button>
         </div>
       </div>
     </div>
@@ -44,6 +72,112 @@
   </div>
   </div>
   
+  <script>
+    let inputArr, length, lower, upper, numeric, special, inputs, valid
+    function getInputElements() {
+        inputs = document.getElementsByTagName("input");
+        return inputs;
+      }
+    // function taken from https://stackoverflow.com/questions/4431162/get-all-the-elements-of-a-particular-form
+
+    function buttonHandler() {
+      inputArr = getInputElements()
+      console.log(inputArr)
+      length = parseInt(inputArr.item(0).value)
+      lower = inputArr.item(1).checked
+      upper = inputArr.item(2).checked
+      numeric = inputArr.item(3).checked
+      special = inputArr.item(4).checked
+      console.log(length,lower,upper,numeric,special)
+
+      if ( !(lower||upper||numeric||special)){
+        alert("Input invalid! Select at least one character type.")
+        valid = false
+      }
+      else if ((!(Number.isInteger(length))||(length<8)||(length>128))){
+        alert("Input invalid! Length must be a positive integer between 8 and 128 (inclusive).")
+        valid = false
+      }
+      else {
+        valid = true
+      }
+      console.log(valid)
+      if (valid){
+        let password = passGen(length,lower,upper,numeric,special)
+        console.log(password)
+        console.log('input was valid, PassGen run')
+      }
+    }
+
+    function stringMixer(a_string){
+      console.log("unfinished")
+    }
+    function passGen(len,low,upp,num,spc){
+      let totalTypes = low + upp + num + spc
+      let fraction = Math.floor(length/totalTypes)
+      let remainder = length - (totalTypes*fraction)
+      genWord = ''
+      if (low){
+        genWord = genWord + generate_random_string_lower(fraction);
+      }
+      if (upp) {
+        genWord = genWord + generate_random_string_upper(fraction);
+      }
+      if (num) {
+        let i = fraction
+        while (i>0){
+          genWord = genWord + Math.floor(Math.random() * 10)
+          i = i - 1
+        }
+      }
+      if (spc) {
+        genWord = genWord + generate_random_string_spec(fraction);
+      }
+      return genWord
+    }
+
+    function generate_random_string_lower(string_length) {
+        let random_string = '';
+        let random_ascii;
+        for (let i = 0; i < string_length; i++) {
+          random_ascii = Math.floor((Math.random() * 25) + 97);
+          random_string += String.fromCharCode(random_ascii)
+        }
+        return random_string
+      }
+
+      function generate_random_string_upper(string_length) {
+          let random_string = '';
+          let random_ascii;
+          let ascii_low = 65;
+          let ascii_high = 90
+          for (let i = 0; i < string_length; i++) {
+            random_ascii = Math.floor((Math.random() * (ascii_high - ascii_low)) + ascii_low);
+            random_string += String.fromCharCode(random_ascii)
+          }
+          return random_string
+        }
+
+      function generate_random_string_spec(string_length) {
+          let random_string = '';
+          let random_ascii;
+          let ascii_low = 32;
+          let ascii_high = 126
+          for (let i = 0; i < string_length; i++) {
+            random_ascii = Math.floor((Math.random() * (ascii_high - ascii_low)) + ascii_low);
+
+            while ((random_ascii>47 && random_ascii<58)||(random_ascii>64 && random_ascii<91)||(random_ascii>96 && random_ascii<123)){
+              random_ascii = Math.floor((Math.random() * (ascii_high - ascii_low)) + ascii_low);
+            }
+            //regenerate the random number if it's not a special character
+            // BECAUSE I AM ALGORITHM INEFFICIENCY SATAN
+            random_string += String.fromCharCode(random_ascii)
+          }
+          return random_string
+        }
+      // taken from https://codehandbook.org/generate-random-string-characters-in-javascript/
+  </script>
+
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
