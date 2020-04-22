@@ -109,8 +109,17 @@
     }
 
     function stringMixer(a_string){
-      console.log("unfinished")
+      var arr = a_string.split('')
+
+      arr.sort(function() {
+        return 0.5 - Math.random();
+      })
+
+      a_string = arr.join('')
+      return a_string
     }
+    //stringMixer taken from https://www.codespeedy.com/shuffle-characters-of-a-string-in-javascript/
+
     function passGen(len,low,upp,num,spc){
       let totalTypes = low + upp + num + spc
       let fraction = Math.floor(length/totalTypes)
@@ -152,6 +161,7 @@
           genWord = genWord + generate_random_string_spec(fraction);
         }
       }
+      genWord = stringMixer(genWord)
       return genWord
     }
 
