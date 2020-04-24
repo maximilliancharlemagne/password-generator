@@ -9,32 +9,47 @@
   <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
+  <!-- Bootstrap container class, contains the whole layout -->
   <div class="container">
+    <!-- Title row -->
     <div class="row">
-      <div class="col text-center mt-5 mb-5">
+      <!-- Column with centered text, top and bottom margin (thus y-axis: my) 5-->
+      <div class="col text-center my-5">
         <h1>Password Generator</h1>
       </div>
     </div>
 
+    <!-- Row with a single column to set the background color of the 
+    "Generate a password" region  -->
     <div class="row">
       <div class="col bg-light p-5">
+
+        <!-- Row to title that region -->
         <div class="row">
           <div class="col">
             <h2>Generate a Password</h2>
             <hr>
           </div>
         </div>
+
+        <!-- Row with a centered column with the border, where the password will go -->
         <div class="row">
           <div class="col mx-auto mt-1 mb-3 border border-dark text-center rounded">
+            <!-- Custom spacer div class to give the password more vertical space without explicitly
+            setting the height of the parent col (because that might break responsiveness and I don't really know how to set Bootstrap element heights anyway)-->
             <div class="spacer-div-150"></div>
+            <!-- <p> tag with id for writing to and some starter text -->
             <p id ="passText" class = "text-break">
               Your Secure Password
             </p>
             <div class="spacer-div-150"></div>
           </div>
         </div>
+
+        <!-- Row for the form -->
         <div class="row">
           <div class="col mb-2">
+            <!-- the form -->
             <form>
               <div class="form-group">
                 <label for="passLength">Password length</label>
@@ -43,6 +58,7 @@
                 <small id="passLength" class="form-text text-muted">Enter a numeric value between 8 and 128</small>
               </div>
               <div class="form-check form-check-inline">
+                <!-- form-check-inline class puts the checkboxes inline instead of stacking them -->
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Include lowercase chars</label>
               </div>
@@ -59,13 +75,18 @@
                 <label class="form-check-label" for="exampleCheck4">Include special chars</label>
               </div>
             </form>
+            <!-- end of form -->
           </div>
         </div>
+        
+        <!-- Row for generate password button -->
         <div class="row">
           <div class="col text-center">
+            <!-- Button with custom buttonHandler function- at the time I wrote this, I neither understood nor trusted event isteners -->
             <button type="button" onclick="buttonHandler()" class="btn btn-danger">Generate Password</button>
           </div>
         </div>
+        
       </div>
     </div>
   </div>
